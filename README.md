@@ -1,2 +1,2 @@
-# neuro
-A simple neuron web for character recognition
+# Neuro
+A simple neuron web for character recognition.
