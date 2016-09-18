@@ -1,36 +1,33 @@
-/**********************************************************
- * Neuro.h                                                *
- * A simple neuron web for character recognition          *
- *                                                        *
- * Author: Artemy Belousov (aka whitemoustache, WM, whimo)*
- **********************************************************/
+/***********************************************************
+ * Neuro.h                                                 *
+ * A simple neuron web for character recognition           *
+ *                                                         *
+ * Author: Artemy Belousov (aka whitemoustache, WM, whimo) *
+ ***********************************************************/
 
 #ifndef NEURO_H
 #define NEURO_H
 
-#include <iostream>
+#include <stdio.h>
+#include <vector>
 
 class Neuron
 {
     private:
-        bool** input;  //Store synaps input
-        int**  weight; //Store synaptic weights
-        int**  mul;    //Store input zoomed by weights
+        std::vector < std::vector <bool> > input;   //Store input
+        std::vector < std::vector <int> >  weights; //Store synaptic weights
+        std::vector < std::vector <int> >  mul;     //Store input zoomed by weights
 
         size_t x; //Number of columns
         size_t y; //Number of rows
 
         int limit = 9; //Sum limit (chosen experimentally for 3x5 bitmap)
-        int sum   = 0; //Sum of the signals
+        int sum   = 0; //Sum of signals
 
-    public:
-        Neuron (size_t new_x, size_t new_y, bool** in); //The constructor
-
-        void set_input (bool** in); //Set the input values
 
         //{================ Processing methods ================
         void zoom   (); //Zoom input values by weights
-        void sum_up (); //Sum up the zoomed values
+        void sum_up (); //Sum up zoomed values
         bool rez    (); //Compare sum and limit
         //}====================================================
 
@@ -39,7 +36,21 @@ class Neuron
         void w_dec (); //Reduce weights
         //}====================================================
 
-        //TODO: add memory file
+    public:
+        char ch; //Character the neuron is responsible for
+
+        Neuron (char new_ch, size_t new_x, size_t new_y); //The constructor
+
+        void set_input (std::vector < std::vector <bool> > in); //Set input values
+
+        //The main processing method. Returns the neuron output.
+        //Teaches the neuron: the argument ("char real") is the real character on the image.
+        //If you want to teach the web, you should pass this character to the process() method.
+        bool process (char real = '\0');
+
+
+        void set_weights (std::vector < std::vector <int> >   in); //Set saved weights
+        void get_weights (std::vector < std::vector <int> >* out); //Get synaptic weights
 };
 
 #endif //NEURO_H
