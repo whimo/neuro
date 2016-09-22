@@ -1,6 +1,6 @@
 /***********************************************************
  * Neuro.cpp                                               *
- * A simple neuron web for character recognition           *
+ * A simple neural network for character recognition       *
  * IMPLEMENTATION                                          *
  *                                                         *
  * Author: Artemy Belousov (aka whitemoustache, WM, whimo) *

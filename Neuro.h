@@ -1,6 +1,6 @@
 /***********************************************************
  * Neuro.h                                                 *
- * A simple neuron web for character recognition           *
+ * A simple neural network for character recognition       *
  *                                                         *
  * Author: Artemy Belousov (aka whitemoustache, WM, whimo) *
  ***********************************************************/
@@ -45,7 +45,7 @@ class Neuron
 
         //The main processing method. Returns the neuron output.
         //Teaches the neuron: the argument ("char real") is the real character on the image.
-        //If you want to teach the web, you should pass this character to the process() method.
+        //If you want to teach the network, you should pass this character to the process() method.
         bool process (char real = '\0');
 
 
