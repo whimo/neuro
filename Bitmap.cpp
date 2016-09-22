@@ -18,6 +18,9 @@ Bitmap::Bitmap (const char* filename) //The constructor
     uchar_t header [header_size];
     fread (header, uchar_size, header_size, bmp); //Read the header
 
+    if (header [0] != 'B' || header [1] != 'M')
+        throw (char*) "Format exception";
+
     width  = *(int*) &header [18]; // | Extract image width  |
     height = *(int*) &header [22]; // |and height from header|
 
